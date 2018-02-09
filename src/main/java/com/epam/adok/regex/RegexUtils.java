@@ -34,7 +34,6 @@ public class RegexUtils {
         while (matcher.find()) {
             sb.append(matcher.group(1));
             String group2 = matcher.group(2);
-            System.out.println(group2);
             String replaced = group2.replaceAll(pattern, replacement);
             sb.append(replaced);
         }
