@@ -23,7 +23,7 @@ public class RegexTaskTest_03 {
     @Parameter(1)
     public String expected;
 
-    @Parameters(name = "{index}: RegexTaskTest_02({0})")
+    @Parameters(name = "{index}: RegexTaskTest_03({0})")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {"<startElement attribute_01='attribute1'/>", "<startElement attribute_01=\"attribute1\"/>"},
