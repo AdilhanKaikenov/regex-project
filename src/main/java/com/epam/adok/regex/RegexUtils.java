@@ -46,4 +46,18 @@ public class RegexUtils {
         }
         return sb.toString();
     }
+
+    public static List<String> findTags(String pattern, String input) {
+        List<String> tags = new ArrayList<>();
+
+        Pattern p = Pattern.compile(pattern);
+        Matcher matcher = p.matcher(input);
+
+        while (matcher.find()) {
+            String tag = matcher.group();
+            tags.add(tag);
+            System.out.println(tag);
+        }
+        return tags;
+    }
 }
