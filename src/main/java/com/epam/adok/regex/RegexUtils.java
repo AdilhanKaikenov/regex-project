@@ -8,7 +8,8 @@ import java.util.regex.Pattern;
 public class RegexUtils {
 
     private static final String WORD_PATTERN = "((?U)(\\w)*(\\p{Punct})?(\\w)+)";
-    private static final String HTML_TAG_PATTERN = "([\\w\\s\\p{Punct}\\p{L}]*?)((<)([\\w\\p{Punct}\\s&&[^<>]]*(>)))";
+    private static final String  HTML_TAG_PATTERN_HEAVY = "([\\w\\s\\p{Punct}\\p{L}]*?)((<)([\\w\\p{Punct}\\s&&[^<>]]*(>)))";
+    private static final String HTML_TAG_PATTERN_LIGHTWEIGHT = "([\\w]+=)'(.+?)'";
 
     public static List<String> findAllWords(String input) {
         List<String> words = new ArrayList<String>();
@@ -26,8 +27,14 @@ public class RegexUtils {
         return input.matches(pattern);
     }
 
-    public static String replaceAllInHTMLTagElementTo(String replacement, String pattern, String input) {
-        Pattern p = Pattern.compile(HTML_TAG_PATTERN);
+    public static String replaceWithLightAllInHTMLTagElementTo(String replacement, String pattern, String input) {
+        return Pattern.compile(HTML_TAG_PATTERN_LIGHTWEIGHT)
+                .matcher(input)
+                .replaceAll("$1\"$2\"");
+    }
+
+    public static String replaceWithHeavyAllInHTMLTagElementTo(String replacement, String pattern, String input) {
+                Pattern p = Pattern.compile(HTML_TAG_PATTERN_HEAVY);
         Matcher matcher = p.matcher(input);
 
         StringBuilder sb = new StringBuilder();

@@ -45,7 +45,7 @@ public class RegexTaskTest_03 {
 
     @Test
     public void testRegex() {
-        assertThat(RegexUtils.replaceAllInHTMLTagElementTo("\"", pattern, input), is(expected));
+        assertThat(RegexUtils.replaceWithLightAllInHTMLTagElementTo("\"", pattern, input), is(expected));
     }
 
 }
